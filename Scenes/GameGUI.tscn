@@ -1,0 +1,409 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Media/GUITheme.tres" type="Theme" id=1]
+[ext_resource path="res://Media/Fonts/Londrina_Solid/LondrinaSolid-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Media/Sprites/Name Box.png" type="Texture" id=3]
+[ext_resource path="res://Media/Sprites/Test Avatar.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/GUI/GUIScreen.cs" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 2 )
+
+[node name="GameGUI" type="CanvasLayer"]
+
+[node name="GUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartScreen" type="Control" parent="GUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 60.0
+margin_right = -60.0
+margin_bottom = -60.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text Panel" type="Panel" parent="GUI/StartScreen"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -240.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/StartScreen/Text Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 60.0
+margin_right = -60.0
+margin_bottom = -60.0
+custom_fonts/font = SubResource( 1 )
+text = "I WANT COOOOOOOOKIESSSS!!!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GUI/StartScreen/Text Panel"]
+margin_left = 68.5229
+margin_top = -24.7253
+margin_right = 371.523
+margin_bottom = 32.2747
+texture = ExtResource( 3 )
+patch_margin_left = 60
+patch_margin_top = 22
+patch_margin_right = 67
+patch_margin_bottom = 35
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/StartScreen/Text Panel/NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "CRAIG"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="GUI/StartScreen/Text Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -204.0
+margin_top = -35.8423
+margin_right = 204.0
+margin_bottom = 30.1577
+texture = ExtResource( 3 )
+patch_margin_left = 57
+patch_margin_top = 28
+patch_margin_right = 71
+patch_margin_bottom = 38
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/StartScreen/Text Panel/NinePatchRect2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Press Space to Begin"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="GUI/StartScreen"]
+margin_left = 1543.49
+margin_top = 380.717
+margin_right = 1773.49
+margin_bottom = 720.717
+texture = ExtResource( 4 )
+
+[node name="WinScreen" type="Control" parent="GUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 60.0
+margin_right = -60.0
+margin_bottom = -60.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text Panel" type="Panel" parent="GUI/WinScreen"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -240.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/WinScreen/Text Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 60.0
+margin_right = -60.0
+margin_bottom = -60.0
+custom_fonts/font = SubResource( 1 )
+text = "NOMNOMNOMNOMNOMNOMNOM!!!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GUI/WinScreen/Text Panel"]
+margin_left = 68.5229
+margin_top = -24.7253
+margin_right = 371.523
+margin_bottom = 32.2747
+texture = ExtResource( 3 )
+patch_margin_left = 60
+patch_margin_top = 22
+patch_margin_right = 67
+patch_margin_bottom = 35
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/WinScreen/Text Panel/NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "CRAIG"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="GUI/WinScreen/Text Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -204.0
+margin_top = -35.8423
+margin_right = 204.0
+margin_bottom = 30.1577
+texture = ExtResource( 3 )
+patch_margin_left = 57
+patch_margin_top = 28
+patch_margin_right = 71
+patch_margin_bottom = 38
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/WinScreen/Text Panel/NinePatchRect2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Press Space to Restart"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="GUI/WinScreen"]
+margin_left = 1543.49
+margin_top = 380.717
+margin_right = 1773.49
+margin_bottom = 720.717
+texture = ExtResource( 4 )
+
+[node name="LoseScreenDad" type="Control" parent="GUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 60.0
+margin_right = -60.0
+margin_bottom = -60.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text Panel" type="Panel" parent="GUI/LoseScreenDad"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -240.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/LoseScreenDad/Text Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 60.0
+margin_right = -60.0
+margin_bottom = -60.0
+custom_fonts/font = SubResource( 1 )
+text = "BACK TO BED OR GET THE BAKKA ME HAND!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GUI/LoseScreenDad/Text Panel"]
+margin_left = 68.5229
+margin_top = -24.7253
+margin_right = 371.523
+margin_bottom = 32.2747
+texture = ExtResource( 3 )
+patch_margin_left = 60
+patch_margin_top = 22
+patch_margin_right = 67
+patch_margin_bottom = 35
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/LoseScreenDad/Text Panel/NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "DAD"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="GUI/LoseScreenDad/Text Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -204.0
+margin_top = -35.8423
+margin_right = 204.0
+margin_bottom = 30.1577
+texture = ExtResource( 3 )
+patch_margin_left = 57
+patch_margin_top = 28
+patch_margin_right = 71
+patch_margin_bottom = 38
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/LoseScreenDad/Text Panel/NinePatchRect2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Press Space to Restart"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="GUI/LoseScreenDad"]
+margin_left = 1543.49
+margin_top = 380.717
+margin_right = 1773.49
+margin_bottom = 720.717
+texture = ExtResource( 4 )
+
+[node name="LoseScreenMam" type="Control" parent="GUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 60.0
+margin_right = -60.0
+margin_bottom = -60.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text Panel" type="Panel" parent="GUI/LoseScreenMam"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -240.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/LoseScreenMam/Text Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 60.0
+margin_right = -60.0
+margin_bottom = -60.0
+custom_fonts/font = SubResource( 1 )
+text = "BACK TO BED OR GET A BOOT IN THE ARSE!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GUI/LoseScreenMam/Text Panel"]
+margin_left = 68.5229
+margin_top = -24.7253
+margin_right = 371.523
+margin_bottom = 32.2747
+texture = ExtResource( 3 )
+patch_margin_left = 60
+patch_margin_top = 22
+patch_margin_right = 67
+patch_margin_bottom = 35
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/LoseScreenMam/Text Panel/NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "MAM"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="GUI/LoseScreenMam/Text Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -204.0
+margin_top = -35.8423
+margin_right = 204.0
+margin_bottom = 30.1577
+texture = ExtResource( 3 )
+patch_margin_left = 57
+patch_margin_top = 28
+patch_margin_right = 71
+patch_margin_bottom = 38
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/LoseScreenMam/Text Panel/NinePatchRect2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Press Space to Restart"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="GUI/LoseScreenMam"]
+margin_left = 1543.49
+margin_top = 380.717
+margin_right = 1773.49
+margin_bottom = 720.717
+texture = ExtResource( 4 )

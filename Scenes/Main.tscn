@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Media/Sprites/House BGs.png" type="Texture" id=1]
 [ext_resource path="res://Media/Sprites/Stairs Cover.png" type="Texture" id=2]
@@ -6,17 +6,20 @@
 [ext_resource path="res://Media/Sprites/Mr Finger.png" type="Texture" id=4]
 [ext_resource path="res://Media/Sprites/Stairs.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Finger.cs" type="Script" id=6]
-[ext_resource path="res://Scripts/Main.cs" type="Script" id=7]
+[ext_resource path="res://Scripts/Main/Main.cs" type="Script" id=7]
+[ext_resource path="res://Scenes/GameGUI.tscn" type="PackedScene" id=8]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 4.91119, 0.525879, 0, 0, 0, 0, 1475.11, 2.15686, 0, 0, 0, 0, 1913.7, -768.138, 0, 0, 0, 0, 3456.13, -749.711, 0, 0, 0, 0, 3898.41, 2.15649, 0, 0, 0, 0, 2735.59, 2.15625, 0, 0, 0, 0, 1312.94, 741.124, 0, 0, 0, 0, 1159.99, 742.967, 0, 0, 0, 0, 5791.66, 746.652 )
+"points": PoolVector2Array( 0, 0, 0, 0, 0.384689, 116.982, 0, 0, 0, 0, 1475.95, 116.488, 0, 0, 0, 0, 1868.07, -652.313, 0, 0, 0, 0, 3459.15, -651.979, 0, 0, 0, 0, 3934.14, 116.498, 0, 0, 0, 0, 2698.58, 116.498, 0, 0, 0, 0, 1224.55, 884.706, 0, 0, 0, 0, 1093.16, 884.706, 0, 0, 0, 0, 5796.92, 884.78 )
 }
 
 [node name="Main" type="Node"]
 script = ExtResource( 7 )
+
+[node name="GameGUI" parent="." instance=ExtResource( 8 )]
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 2946.92, -267.208 )
@@ -39,7 +42,7 @@ texture = ExtResource( 5 )
 script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Finger"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="Finger"]
 position = Vector2( 289.52, -70.8978 )
@@ -51,14 +54,16 @@ z_index = 10
 texture = ExtResource( 4 )
 
 [node name="CraigPath" type="Path2D" parent="."]
-curve = SubResource( 1 )
+self_modulate = Color( 0.862745, 0.0745098, 0.741176, 0.607843 )
+curve = SubResource( 2 )
 
 [node name="CraigPathFollow" type="PathFollow2D" parent="CraigPath"]
-position = Vector2( 4.91119, 0.525879 )
+position = Vector2( 0.384689, 116.982 )
 rotation = 0.00110935
 rotate = false
+loop = false
 
 [node name="CraigSprite" type="Sprite" parent="CraigPath/CraigPathFollow"]
-position = Vector2( 15.443, -13.3168 )
+position = Vector2( -0.631177, -128.749 )
 z_index = 1
 texture = ExtResource( 3 )
