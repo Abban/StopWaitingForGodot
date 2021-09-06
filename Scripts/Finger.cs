@@ -20,6 +20,7 @@ namespace ClumsyCraig
         {
             GetInput();
             MoveAndSlide(_velocity);
+            RotationDegrees = _velocity.x * delta;
         }
 
         private void GetInput()

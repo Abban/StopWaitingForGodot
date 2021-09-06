@@ -55,6 +55,8 @@ namespace ClumsyCraig.Interactables
 
         private void OnFingerAreaExited()
         {
+            if (_state != States.Highlighted) return;
+
             _state = States.Idle;
             _interactableView.Deselect();
         }

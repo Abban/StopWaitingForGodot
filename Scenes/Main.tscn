@@ -71,10 +71,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Interactables" type="Node2D" parent="."]
-
-[node name="ToyRobot" parent="Interactables" instance=ExtResource( 10 )]
+[node name="ToyRobot" parent="." instance=ExtResource( 10 )]
 position = Vector2( 973.701, 101.271 )
 _viewFileName = "TestSprite"
+
+[node name="Interactables" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="WinTrigger" to="WinTrigger" method="OnAreaEnter"]
