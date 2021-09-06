@@ -1,5 +1,6 @@
 using ClumsyCraig.GUI;
 using ClumsyCraig.Modules.StateMachine;
+using ClumsyCraig.Player;
 using ClumsyCraig.StateMachine;
 using Godot;
 
@@ -33,7 +34,7 @@ namespace ClumsyCraig
         private void InitialiseComponents()
         {
             _components = new Components(
-                GetNode<PathFollow2D>("CraigPath/CraigPathFollow"),
+                GetNode<Craig>("Craig"),
                 GetNode<GUIScreen>("GameGUI/GUI/StartScreen"),
                 GetNode<GUIScreen>("GameGUI/GUI/WinScreen"),
                 GetNode<GUIScreen>("GameGUI/GUI/LoseScreenDad"),
@@ -41,23 +42,29 @@ namespace ClumsyCraig
             );
         }
 
+
+        private void InitialiseEventHandlers()
+        {
+            // GetNode("Timer").Connect("timeout", this, nameof(_on_Timer_timeout)); 
+        }
+
     
         public class Components
         {
-            public PathFollow2D CraigPathFollow2D { get; }
+            public IPayload CraigPayload { get; }
             public IGUIScreen StartScreen { get; }
             public IGUIScreen WinScreen { get; }
             public IGUIScreen LoseScreenDad { get; }
             public IGUIScreen LoseScreenMam { get; }
 
             public Components(
-                PathFollow2D craigPathFollow2D, 
+                IPayload craigPayload, 
                 IGUIScreen startScreen,
                 IGUIScreen winScreen,
                 IGUIScreen loseScreenDad,
                 IGUIScreen loseScreenMam)
             {
-                CraigPathFollow2D = craigPathFollow2D;
+                CraigPayload = craigPayload;
                 StartScreen = startScreen;
                 WinScreen = winScreen;
                 LoseScreenDad = loseScreenDad;

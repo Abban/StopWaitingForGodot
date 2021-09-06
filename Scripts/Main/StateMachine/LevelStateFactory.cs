@@ -40,7 +40,7 @@ namespace ClumsyCraig.StateMachine
         private IState _playing;
 
         private IState Playing => _playing ??= new Playing(
-            _components.CraigPathFollow2D
+            _components.CraigPayload
         );
 
         private IState _win;
@@ -53,7 +53,7 @@ namespace ClumsyCraig.StateMachine
         private IState _reset;
 
         private IState Reset => _reset ??= new Reset(
-            _components.CraigPathFollow2D
+            _components.CraigPayload
         );
         
         

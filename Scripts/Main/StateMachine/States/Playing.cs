@@ -1,16 +1,16 @@
+using System;
 using ClumsyCraig.Modules.StateMachine;
-using Godot;
+using ClumsyCraig.Player;
 
 namespace ClumsyCraig.StateMachine.States
 {
     public class Playing : State
     {
-        // TODO: Put PathFollow2D in a service wrapper
-        private readonly PathFollow2D _craigFollowPath;
+        private readonly IPayload _payload;
 
-        public Playing(PathFollow2D craigFollowPath)
+        public Playing(IPayload payload)
         {
-            _craigFollowPath = craigFollowPath;
+            _payload = payload;
             
             CanMoveToStates.Add(LevelStates.Win);
             CanMoveToStates.Add(LevelStates.LoseDad);
@@ -18,9 +18,10 @@ namespace ClumsyCraig.StateMachine.States
         }
 
 
-        public override void Update(float delta)
+        public override void Start(Type lastState)
         {
-            _craigFollowPath.Offset += 250 * delta;
+            base.Start(lastState);
+            _payload.Start();
         }
     }
 }
