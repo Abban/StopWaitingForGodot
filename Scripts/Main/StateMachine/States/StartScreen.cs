@@ -30,7 +30,7 @@ public class StartScreen : State
     public override void Update(float delta)
     {
         // TODO: Put Input in a service wrapper
-        if (Input.IsActionPressed(Config.Input.Select))
+        if (Input.IsActionJustReleased(Config.Input.Select))
         {
             _changeStateAction.Invoke(LevelStates.Playing);
         }

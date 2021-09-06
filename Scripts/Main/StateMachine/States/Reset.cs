@@ -1,17 +1,21 @@
 using System;
 using ClumsyCraig.Modules.StateMachine;
-using ClumsyCraig.Player;
+using ClumsyCraig.Payload;
 
 namespace ClumsyCraig.StateMachine.States
 {
     public class Reset : State
     {
         private readonly IPayload _payload;
+        private readonly Action<Type> _changeStateAction;
 
-        public Reset(IPayload payload)
+        public Reset(
+            IPayload payload,
+            Action<Type> changeStateAction)
         {
             _payload = payload;
-            
+            _changeStateAction = changeStateAction;
+
             CanMoveToStates.Add(LevelStates.Start);
         }
 
@@ -20,6 +24,7 @@ namespace ClumsyCraig.StateMachine.States
         {
             base.Start(lastState);
             _payload.Reset();
+            _changeStateAction.Invoke(LevelStates.Start);
         }
     }
 }

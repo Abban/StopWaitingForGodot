@@ -53,7 +53,8 @@ namespace ClumsyCraig.StateMachine
         private IState _reset;
 
         private IState Reset => _reset ??= new Reset(
-            _components.CraigPayload
+            _components.CraigPayload,
+            _changeStateAction
         );
         
         

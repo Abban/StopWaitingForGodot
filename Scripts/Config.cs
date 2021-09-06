@@ -2,6 +2,25 @@ namespace ClumsyCraig
 {
     public static class Config
     {
+        public enum Parents
+        {
+            Dad,
+            Mam
+        }
+
+        public enum EndGameTypes
+        {
+            Win,
+            Noise,
+            Spotted,
+            Fall
+        }
+        
+        public static class ObjectNames
+        {
+            public const string CraigBody = "CraigBody";
+        }
+        
         public static class Input
         {
             public const string Up = "up";

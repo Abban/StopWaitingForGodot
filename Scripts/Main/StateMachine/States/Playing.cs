@@ -1,6 +1,6 @@
 using System;
 using ClumsyCraig.Modules.StateMachine;
-using ClumsyCraig.Player;
+using ClumsyCraig.Payload;
 
 namespace ClumsyCraig.StateMachine.States
 {

@@ -1,5 +1,7 @@
+using System;
 using ClumsyCraig.GUI;
 using ClumsyCraig.Modules.StateMachine;
+using ClumsyCraig.Payload;
 using ClumsyCraig.Player;
 using ClumsyCraig.StateMachine;
 using Godot;
@@ -17,6 +19,7 @@ namespace ClumsyCraig
         public override void _Ready()
         {
             InitialiseComponents();
+            InitialiseEventHandlers();
 
             _factory = new LevelFactory(_components);
             _stateMachine = _factory.LevelStateMachine;
@@ -45,26 +48,53 @@ namespace ClumsyCraig
 
         private void InitialiseEventHandlers()
         {
-            // GetNode("Timer").Connect("timeout", this, nameof(_on_Timer_timeout)); 
+            _components.Craig.OnEndGameAction += OnEndGameAction;
+        }
+
+
+        private void OnEndGameAction(Config.EndGameTypes type, Config.Parents parent)
+        {
+            if (!_stateMachine.CurrentStateIs(LevelStates.Playing)) return;
+            
+            // TODO: Need more states for the pre-fail, like falling over etc
+            switch (type)
+            {
+                case Config.EndGameTypes.Win:
+                    _stateMachine.ChangeState(LevelStates.Win);
+                    break;
+                case Config.EndGameTypes.Noise when parent == Config.Parents.Dad:
+                case Config.EndGameTypes.Spotted when parent == Config.Parents.Dad:
+                case Config.EndGameTypes.Fall when parent == Config.Parents.Dad:
+                    _stateMachine.ChangeState(LevelStates.LoseDad);
+                    break;
+                case Config.EndGameTypes.Noise when parent == Config.Parents.Mam:
+                case Config.EndGameTypes.Spotted when parent == Config.Parents.Mam:
+                case Config.EndGameTypes.Fall when parent == Config.Parents.Mam:
+                    _stateMachine.ChangeState(LevelStates.LoseMam);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
         }
 
     
         public class Components
         {
-            public IPayload CraigPayload { get; }
+            public Craig Craig { get; }
+            public IPayload CraigPayload => Craig;
             public IGUIScreen StartScreen { get; }
             public IGUIScreen WinScreen { get; }
             public IGUIScreen LoseScreenDad { get; }
             public IGUIScreen LoseScreenMam { get; }
 
             public Components(
-                IPayload craigPayload, 
+                Craig craig, 
                 IGUIScreen startScreen,
                 IGUIScreen winScreen,
                 IGUIScreen loseScreenDad,
                 IGUIScreen loseScreenMam)
             {
-                CraigPayload = craigPayload;
+                Craig = craig;
                 StartScreen = startScreen;
                 WinScreen = winScreen;
                 LoseScreenDad = loseScreenDad;

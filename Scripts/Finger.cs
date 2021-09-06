@@ -5,13 +5,15 @@ namespace ClumsyCraig
     public class Finger : KinematicBody2D
     {
         private const int Speed = 500;
+        private const float Acceleration = 0.1f;
+        private const float Deceleration = 0.1f;
         
         private Vector2 _velocity = Vector2.Zero;
 
         public override void _PhysicsProcess(float delta)
         {
             GetInput();
-            _velocity = MoveAndSlide(_velocity);
+            MoveAndSlide(_velocity);
         }
 
         private void GetInput()
@@ -37,8 +39,23 @@ namespace ClumsyCraig
             {
                 velocity.x -= 1;
             }
+            
+            var input = velocity.Normalized();
+            _velocity = new Vector2(
+                LerpAxis(input.x, _velocity.x),
+                LerpAxis(input.y, _velocity.y)
+            );
+        }
+        
+        
+        private static float LerpAxis(float inputDirection, float currentVelocity)
+        {
+            if (inputDirection == 0)
+            {
+                return Mathf.Lerp(currentVelocity, 0, Deceleration);
+            }
 
-            _velocity = velocity.Normalized() * Speed;
+            return Mathf.Lerp(currentVelocity, inputDirection * Speed, Acceleration);
         }
     }
 }

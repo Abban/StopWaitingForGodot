@@ -1,4 +1,4 @@
-namespace ClumsyCraig.Player
+namespace ClumsyCraig.Payload
 {
     public interface IPayload
     {

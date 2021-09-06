@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Media/Sprites/House BGs.png" type="Texture" id=1]
 [ext_resource path="res://Media/Sprites/Stairs Cover.png" type="Texture" id=2]
@@ -8,12 +8,29 @@
 [ext_resource path="res://Scripts/Finger.cs" type="Script" id=6]
 [ext_resource path="res://Scripts/Main/Main.cs" type="Script" id=7]
 [ext_resource path="res://Scenes/GameGUI.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Triggers/WinTrigger.cs" type="Script" id=9]
+[ext_resource path="res://Media/Sprites/Toy.png" type="Texture" id=10]
+[ext_resource path="res://Media/Shaders/outline_2d_outer.gdshader" type="Shader" id=11]
+[ext_resource path="res://Scripts/Interactables/InteractableSprite.cs" type="Script" id=12]
+[ext_resource path="res://Scripts/Interactables/Interactable.cs" type="Script" id=13]
+[ext_resource path="res://Scripts/Interactables/InteractableHighlightTrigger.cs" type="Script" id=14]
+[ext_resource path="res://Scripts/Interactables/InteractableLoseTrigger.cs" type="Script" id=15]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.84472
 height = 7.72848
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="CircleShape2D" id=3]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 61.1482
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 11 )
+shader_param/line_color = Color( 0.560784, 0.211765, 0.211765, 1 )
+shader_param/line_thickness = 0.0
 
 [node name="Main" type="Node"]
 script = ExtResource( 7 )
@@ -50,7 +67,6 @@ z_index = 11
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="Finger"]
-position = Vector2( 289.52, -70.8978 )
 current = true
 
 [node name="Sprite" type="Sprite" parent="Finger"]
@@ -59,13 +75,42 @@ texture = ExtResource( 4 )
 
 [node name="Craig" parent="." instance=ExtResource( 3 )]
 
-[node name="Win" type="KinematicBody2D" parent="."]
-position = Vector2( 800, 0 )
+[node name="WinTrigger" type="Area2D" parent="."]
+position = Vector2( 5818.92, 765.196 )
+script = ExtResource( 9 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Win"]
-position = Vector2( 31.652, -80.6128 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinTrigger"]
+position = Vector2( 0, -80.613 )
 scale = Vector2( 20, 20 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="TestToy" type="Node2D" parent="."]
+position = Vector2( 2308.42, -664.798 )
+script = ExtResource( 13 )
+
+[node name="LoseTrigger" type="Area2D" parent="TestToy"]
+script = ExtResource( 15 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestToy/LoseTrigger"]
+shape = SubResource( 3 )
+
+[node name="HighlightTrigger" type="Area2D" parent="TestToy"]
+collision_layer = 1024
+collision_mask = 1024
+script = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestToy/HighlightTrigger"]
+position = Vector2( 0.361816, -49.5199 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="TestToy"]
+material = SubResource( 5 )
+position = Vector2( -0.361816, -49.4789 )
+texture = ExtResource( 10 )
+script = ExtResource( 12 )
+
+[connection signal="body_entered" from="WinTrigger" to="WinTrigger" method="OnAreaEnter"]
+[connection signal="body_entered" from="TestToy/LoseTrigger" to="TestToy/LoseTrigger" method="OnAreaEnter"]
