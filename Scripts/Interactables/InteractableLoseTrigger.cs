@@ -1,17 +1,19 @@
-using Godot;
-using ClumsyCraig;
+using System;
 using ClumsyCraig.Payload;
+using Godot;
 
-public class InteractableLoseTrigger : Area2D
+namespace ClumsyCraig.Interactables
 {
-    [Export] private Config.EndGameTypes _endGameType = Config.EndGameTypes.Noise;
-    [Export] private Config.Parents _parent = Config.Parents.Dad;
-
-    public void OnAreaEnter(CraigBody body)
+    public class InteractableLoseTrigger : Area2D
     {
-        if (body.Name == Config.ObjectNames.CraigBody)
+        public Action<CraigBody> OnBodyEntered = body => { };
+
+        public void OnAreaEnter(CraigBody body)
         {
-            body.OnLose(_endGameType, _parent);
+            if (body.Name == Config.ObjectNames.CraigBody)
+            {
+                OnBodyEntered.Invoke(body);
+            }
         }
     }
 }

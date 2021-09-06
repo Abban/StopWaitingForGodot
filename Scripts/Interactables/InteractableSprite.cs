@@ -1,23 +1,38 @@
 using Godot;
 
-public class InteractableSprite : Sprite
+namespace ClumsyCraig.Interactables
 {
-    private ShaderMaterial _material;
-    private const string LineThicknessParamName = "line_thickness";
-
-    public override void _Ready()
+    public class InteractableSprite : Sprite, IInteractableView
     {
-        base._Ready();
-        _material = Material as ShaderMaterial;
-    }
+        private ShaderMaterial _material;
+        private const string LineThicknessParamName = "line_thickness";
 
-    public void Select()
-    {
-        _material.SetShaderParam(LineThicknessParamName, 4);       
-    }
+        public override void _Ready()
+        {
+            base._Ready();
+            _material = Material as ShaderMaterial;
+        }
 
-    public void Deselect()
-    {
-        _material.SetShaderParam(LineThicknessParamName, 0);       
+        public void Reset()
+        {
+            Visible = true;
+            Deselect();
+        }
+
+        public void Select()
+        {
+            _material.SetShaderParam(LineThicknessParamName, 4);       
+        }
+
+        public void Deselect()
+        {
+            _material.SetShaderParam(LineThicknessParamName, 0);       
+        }
+
+        public void Nullify()
+        {
+            // TODO: This should do an animation or something
+            Visible = false;
+        }
     }
 }

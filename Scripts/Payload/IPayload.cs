@@ -1,9 +1,8 @@
 namespace ClumsyCraig.Payload
 {
-    public interface IPayload
+    public interface IPayload : IResettable
     {
         public void Start();
         public void Stop();
-        public void Reset();
     }
 }

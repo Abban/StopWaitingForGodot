@@ -1,19 +1,19 @@
 using System;
+using System.Collections.Generic;
 using ClumsyCraig.Modules.StateMachine;
-using ClumsyCraig.Payload;
 
 namespace ClumsyCraig.StateMachine.States
 {
     public class Reset : State
     {
-        private readonly IPayload _payload;
+        private readonly List<IResettable> _resettables;
         private readonly Action<Type> _changeStateAction;
 
         public Reset(
-            IPayload payload,
+            List<IResettable> resettables,
             Action<Type> changeStateAction)
         {
-            _payload = payload;
+            _resettables = resettables;
             _changeStateAction = changeStateAction;
 
             CanMoveToStates.Add(LevelStates.Start);
@@ -23,7 +23,7 @@ namespace ClumsyCraig.StateMachine.States
         public override void Start(Type lastState)
         {
             base.Start(lastState);
-            _payload.Reset();
+            _resettables.ForEach(resettable => resettable.Reset());
             _changeStateAction.Invoke(LevelStates.Start);
         }
     }

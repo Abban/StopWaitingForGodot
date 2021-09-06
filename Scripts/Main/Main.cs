@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using ClumsyCraig.GUI;
+using ClumsyCraig.Interactables;
 using ClumsyCraig.Modules.StateMachine;
 using ClumsyCraig.Payload;
 using ClumsyCraig.Player;
@@ -38,6 +40,8 @@ namespace ClumsyCraig
         {
             _components = new Components(
                 GetNode<Craig>("Craig"),
+                GetNode<Finger>("Finger"),
+                GetNode<Interactable>("Interactables/ToyRobot"),
                 GetNode<GUIScreen>("GameGUI/GUI/StartScreen"),
                 GetNode<GUIScreen>("GameGUI/GUI/WinScreen"),
                 GetNode<GUIScreen>("GameGUI/GUI/LoseScreenDad"),
@@ -82,19 +86,31 @@ namespace ClumsyCraig
         {
             public Craig Craig { get; }
             public IPayload CraigPayload => Craig;
+            public Finger Finger { get; }
+            public Interactable ToyRobot { get; }
             public IGUIScreen StartScreen { get; }
             public IGUIScreen WinScreen { get; }
             public IGUIScreen LoseScreenDad { get; }
             public IGUIScreen LoseScreenMam { get; }
+            public List<IResettable> Resettables => new List<IResettable>
+            {
+                Craig,
+                Finger,
+                ToyRobot
+            };
 
             public Components(
                 Craig craig, 
+                Finger finger,
+                Interactable toyRobot,
                 IGUIScreen startScreen,
                 IGUIScreen winScreen,
                 IGUIScreen loseScreenDad,
                 IGUIScreen loseScreenMam)
             {
                 Craig = craig;
+                Finger = finger;
+                ToyRobot = toyRobot;
                 StartScreen = startScreen;
                 WinScreen = winScreen;
                 LoseScreenDad = loseScreenDad;

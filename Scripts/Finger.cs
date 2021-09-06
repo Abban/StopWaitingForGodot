@@ -2,13 +2,19 @@ using Godot;
 
 namespace ClumsyCraig
 {
-    public class Finger : KinematicBody2D
+    public class Finger : KinematicBody2D, IResettable
     {
         private const int Speed = 500;
         private const float Acceleration = 0.1f;
         private const float Deceleration = 0.1f;
         
         private Vector2 _velocity = Vector2.Zero;
+        private Vector2 _startPosition;
+
+        public override void _Ready()
+        {
+            _startPosition = Position;
+        }
 
         public override void _PhysicsProcess(float delta)
         {
@@ -56,6 +62,11 @@ namespace ClumsyCraig
             }
 
             return Mathf.Lerp(currentVelocity, inputDirection * Speed, Acceleration);
+        }
+
+        public void Reset()
+        {
+            Position = _startPosition;
         }
     }
 }

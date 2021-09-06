@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Interactables/Interactable.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/Interactables/InteractableHighlightTrigger.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/Interactables/InteractableLoseTrigger.cs" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 61.1482
+
+[node name="Interactable" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="LoseTrigger" type="Area2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LoseTrigger"]
+shape = SubResource( 1 )
+
+[node name="HighlightTrigger" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 1024
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HighlightTrigger"]
+position = Vector2( 0.361816, -49.5199 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="LoseTrigger" to="LoseTrigger" method="OnAreaEnter"]
+[connection signal="body_entered" from="HighlightTrigger" to="HighlightTrigger" method="OnAreaEnter"]
+[connection signal="body_exited" from="HighlightTrigger" to="HighlightTrigger" method="OnAreaExit"]

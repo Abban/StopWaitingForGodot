@@ -19,6 +19,7 @@ namespace ClumsyCraig
         public static class ObjectNames
         {
             public const string CraigBody = "CraigBody";
+            public const string FingerBody = "Finger";
         }
         
         public static class Input
